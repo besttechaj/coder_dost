@@ -15,12 +15,7 @@ const data = [
     id: 3,
     title: 'java',
     img: 'https://tse2.mm.bing.net/th?id=OIP._Lm_T3scKhVEVFC54gcRxwHaE8&pid=Api&P=0&h=180',
-  },
-  {
-    id: 4,
-    title: 'react',
-    img: 'https://tse2.mm.bing.net/th?id=OIP.8FCVNWuKIveKorSviVSSVQHaE8&pid=Api&P=0&h=180',
-    verified: true,
+    verified: false,
   },
 ];
 export default data;
