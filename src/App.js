@@ -17,6 +17,18 @@ function App() {
     ]);
   }
 
+  //logic to delete video
+  function deleteVideo(id) {
+    console.log('deleting the video whose id is ', id);
+    //we need to again update the original data
+    setData(
+      data.filter((Element) => {
+        //return only those items whose id doesn't match
+        return Element.id !== id;
+      })
+    );
+  }
+
   console.log('render App component');
   return (
     //adding onClick event in parent component
@@ -26,7 +38,7 @@ function App() {
     >
       <AddVideo addVideos={addVideos}></AddVideo>
       {/* passing the state */}
-      <VideoList allData={data} />
+      <VideoList allData={data} deleteVideo={deleteVideo} />
       {/* logic to understand counter  */}
       {/* <Counter></Counter> */}
     </div>

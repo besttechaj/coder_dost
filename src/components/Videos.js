@@ -1,23 +1,13 @@
 import React from 'react';
-
+import './Video.css';
 //destructuring props
-const Videos = ({ title, img, verified, children }) => {
+const Videos = ({ id, title, img, verified, children, deleteVideo }) => {
   console.log('render videos component');
   return (
-    <div
-      className='container'
-      style={{
-        border: '2px solid blue',
-        width: '250px',
-        padding: '5px',
-        margin: '3px',
-        height: '180px',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'red',
-        color: 'white',
-      }}
-    >
+    <div className='container'>
+      <button className='close' onClick={() => deleteVideo(id)}>
+        X
+      </button>
       <div className='pic' style={{ width: '20%', marginBottom: '2px' }}>
         <img
           src={img}

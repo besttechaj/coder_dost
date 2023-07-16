@@ -1,0 +1,21 @@
+.container {
+  width: 250px;
+  padding: 5px;
+  margin: 3px;
+  height: 215px;
+  display: flex;
+  flex-direction: column;
+  background-color: chartreuse;
+  color: white;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.7rem;
+  width: 23px;
+  border-radius: 80px;
+  text-align: center;
+}
