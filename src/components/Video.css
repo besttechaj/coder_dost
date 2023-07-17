@@ -2,7 +2,7 @@
   width: 250px;
   padding: 5px;
   margin: 3px;
-  height: 215px;
+  height: 185px;
   display: flex;
   flex-direction: column;
   background-color: chartreuse;
@@ -15,7 +15,14 @@
   right: 0;
   top: 0;
   font-size: 0.7rem;
-  width: 23px;
+  border-radius: 80px;
+  text-align: center;
+}
+.edit {
+  position: absolute;
+  right: 4em;
+  top: 0;
+  font-size: 0.7rem;
   border-radius: 80px;
   text-align: center;
 }

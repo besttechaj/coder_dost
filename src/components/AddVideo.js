@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './AddVideo.css';
-function AddVideo({ addVideos }) {
+function AddVideo({ addVideos, editableVideo }) {
   let initialState = {
     title: '',
     img: '',
@@ -25,6 +25,20 @@ function AddVideo({ addVideos }) {
     //after sending data restore the input to its empty value
     setNewVideo(initialState);
   }
+
+  useEffect(() => {
+    console.log(
+      'running the useEffect whenever component mount for first time'
+    );
+    if (editableVideo) {
+      console.log(
+        'running the useEffect whenever there is a change in specified dependencies'
+      );
+      console.log('change in dependency occurred ', editableVideo);
+      setNewVideo(editableVideo);
+    }
+  }, [editableVideo]);
+
   return (
     <form onSubmit={handleSubmit}>
       <input

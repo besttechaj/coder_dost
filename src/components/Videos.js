@@ -1,12 +1,23 @@
 import React from 'react';
 import './Video.css';
 //destructuring props
-const Videos = ({ id, title, img, verified, children, deleteVideo }) => {
+const Videos = ({
+  id,
+  title,
+  img,
+  verified,
+  children,
+  deleteVideo,
+  editVideo,
+}) => {
   console.log('render videos component');
   return (
     <div className='container'>
       <button className='close' onClick={() => deleteVideo(id)}>
         X
+      </button>
+      <button className='edit' onClick={() => editVideo(id)}>
+        edit
       </button>
       <div className='pic' style={{ width: '20%', marginBottom: '2px' }}>
         <img

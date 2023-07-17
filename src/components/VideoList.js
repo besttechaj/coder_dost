@@ -2,7 +2,7 @@ import React from 'react';
 import Videos from '../components/Videos';
 import PlayButton from '../components/PlayButton';
 
-const VideoList = ({ allData, deleteVideo }) => {
+const VideoList = ({ allData, deleteVideo, editVideo }) => {
   console.log(allData);
   return (
     <>
@@ -21,6 +21,7 @@ const VideoList = ({ allData, deleteVideo }) => {
             key={Iterator.id}
             id={Iterator.id}
             deleteVideo={deleteVideo}
+            editVideo={editVideo}
           >
             {/* declaring nested component and passing it through prop called
             children(used to get the nested component as a prop) inside Video
