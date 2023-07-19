@@ -11,6 +11,7 @@ function App() {
 
   //updating the state of edit video
   const [editableVideo, setEditableVideo] = useState(null);
+  console.log('current editable video is ', editableVideo);
 
   //passing the parameter from the child component known as AddVideos[passing the other child component state as a parameter to this defined function below]
   function addVideos(newVideoUpdate) {

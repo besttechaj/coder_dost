@@ -4,7 +4,7 @@ function AddVideo({ addVideos, editableVideo }) {
   let initialState = {
     title: '',
     img: '',
-    verified: '',
+    verified: false,
   };
   const [newVideo, setNewVideo] = useState(initialState);
 
@@ -35,7 +35,12 @@ function AddVideo({ addVideos, editableVideo }) {
         'running the useEffect whenever there is a change in specified dependencies'
       );
       console.log('change in dependency occurred ', editableVideo);
-      setNewVideo(editableVideo);
+      console.log('change in dependency occurred ', editableVideo[0].title);
+      setNewVideo({
+        title: editableVideo[0].title,
+        img: editableVideo[0].img,
+        verified: editableVideo[0].verified,
+      });
     }
   }, [editableVideo]);
 
