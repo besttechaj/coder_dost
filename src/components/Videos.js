@@ -7,13 +7,16 @@ const Videos = ({
   img,
   verified,
   children,
-  deleteVideo,
+  dispatch,
   editVideo,
 }) => {
   console.log('render videos component');
   return (
     <div className='container'>
-      <button className='close' onClick={() => deleteVideo(id)}>
+      <button
+        className='close'
+        onClick={() => dispatch({ type: 'DELETE', payload: id })}
+      >
         X
       </button>
       <button className='edit' onClick={() => editVideo(id)}>

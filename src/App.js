@@ -6,8 +6,6 @@ import VideoList from './components/VideoList';
 // import Counter from './components/Counter';
 
 function App() {
-  //replacing the previous code with redux concept
-
   //updating the state of edit video
   const [editableVideo, setEditableVideo] = useState(null);
   // console.log('current editable video is ', editableVideo);
@@ -60,20 +58,8 @@ function App() {
   //syntax: const [state,dispatch]=useReducer(reducerLogic[Area where you defined all your function ie logic],initialState)
   //  data - state
   //  dispatch - setState : dispatch indirectly update the state whereas as useState directly updates the states
+  //dispatch -> this will triggered the action
   const [data, dispatch] = useReducer(dataReducer, videoDB);
-
-  //passing the parameter from the child component known as AddVideos[passing the other child component state as a parameter to this defined function below]
-  function addVideos(newVideoUpdate) {
-    //action : tells the function name and what parameters that function is expecting ie {type:'ADD',payload:function's parameter}
-    // setVideos - means  dispatch(action[method type and its parameters])
-    dispatch({ type: 'ADD', payload: newVideoUpdate });
-  }
-
-  //logic to delete video
-  function deleteVideo(id) {
-    dispatch({ type: 'DELETE', payload: id });
-    console.log('deleting the video whose id is ', id);
-  }
 
   //logic to edit video
   function editVideo(id) {
@@ -87,23 +73,6 @@ function App() {
     //setEditableVideo(data.find(Element)=>Element.id===id)
   }
 
-  //logic to update video after editing the video and fetched that video here
-  const updateVideo = (expectedVideo) => {
-    dispatch({ type: 'UPDATE', payload: expectedVideo });
-    console.log('value after editing the video ', expectedVideo);
-
-    // setData(dataList);
-    //TODO: unsuccessful ?? doubt
-    // console.log(
-    //   'after operation ',
-    //   dataList.slice(targetIndex, 1, {
-    //     title: expectedVideo.title,
-    //     img: expectedVideo.img,
-    //     verified: expectedVideo.verified,
-    //   })
-    // );
-  };
-
   console.log('render App component');
   return (
     //adding onClick event in parent component
@@ -111,17 +80,9 @@ function App() {
       className='App'
       // onClick={() => console.log('Running App component due to event bubbling')}
     >
-      <AddVideo
-        addVideos={addVideos}
-        editableVideo={editableVideo}
-        updateVideo={updateVideo}
-      ></AddVideo>
+      <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
       {/* passing the state */}
-      <VideoList
-        allData={data}
-        deleteVideo={deleteVideo}
-        editVideo={editVideo}
-      />
+      <VideoList allData={data} dispatch={dispatch} editVideo={editVideo} />
       {/* logic to understand counter  */}
       {/* <Counter></Counter> */}
     </div>

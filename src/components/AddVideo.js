@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './AddVideo.css';
-function AddVideo({ addVideos, editableVideo, updateVideo }) {
+function AddVideo({ dispatch, editableVideo }) {
   let initialState = {
     id: '',
     title: '',
@@ -22,11 +22,13 @@ function AddVideo({ addVideos, editableVideo, updateVideo }) {
     //page reloading is a default behavior of form hence we need to use preventDefault method with syntheticBaseEvent ie e.preventDefault()
     e.preventDefault();
     if (editableVideo) {
-      //here we are passing the edited video through parameters to the updateVideo function which is present inside app component
-      updateVideo(newVideo);
+      dispatch({ type: 'UPDATE', payload: newVideo });
+      console.log('value after editing the video ', newVideo);
     } else {
       //passing the state to parent component as a parameters inside addVideo function which we have already fetched through props
-      addVideos(newVideo);
+      //action : tells the function name and what parameters that function is expecting ie {type:'ADD',payload:function's parameter}
+      // setVideos - means  dispatch(action[method type and its parameters])
+      dispatch({ type: 'ADD', payload: newVideo });
     }
 
     //after sending data restore the input to its empty value
