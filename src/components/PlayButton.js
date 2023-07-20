@@ -19,11 +19,12 @@ export default function PlayButton({
     e.stopPropagation();
     //to stop the default behavior of the page which is occurred due to current event triggered
     e.preventDefault();
-    if (playing)
-      //calling the passed custom function through prop
-      onClickingButton_pause();
-    else onClickingButton_play();
-    //converting the value to false
+    //logic to display play and pause button in console to test the button
+    // if (playing)
+    //   //calling the passed custom function through prop
+    //   onClickingButton_pause();
+    // else onClickingButton_play();
+    // //converting the value to false
     setPlaying(!playing);
   }
   return (

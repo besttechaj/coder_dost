@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './AddVideo.css';
-function AddVideo({ addVideos, editableVideo }) {
+function AddVideo({ addVideos, editableVideo, updateVideo }) {
   let initialState = {
+    id: '',
     title: '',
     img: '',
     verified: false,
@@ -20,8 +21,14 @@ function AddVideo({ addVideos, editableVideo }) {
   function handleSubmit(e) {
     //page reloading is a default behavior of form hence we need to use preventDefault method with syntheticBaseEvent ie e.preventDefault()
     e.preventDefault();
-    //passing the state to parent component as a parameters inside addVideo function which we have already fetched through props
-    addVideos(newVideo);
+    if (editableVideo) {
+      //here we are passing the edited video through parameters to the updateVideo function which is present inside app component
+      updateVideo(newVideo);
+    } else {
+      //passing the state to parent component as a parameters inside addVideo function which we have already fetched through props
+      addVideos(newVideo);
+    }
+
     //after sending data restore the input to its empty value
     setNewVideo(initialState);
   }
@@ -35,8 +42,9 @@ function AddVideo({ addVideos, editableVideo }) {
         'running the useEffect whenever there is a change in specified dependencies'
       );
       console.log('change in dependency occurred ', editableVideo);
-      console.log('change in dependency occurred ', editableVideo[0].title);
+      // console.log('change in dependency occurred ', editableVideo[0].title);
       setNewVideo({
+        id: editableVideo[0].id,
         title: editableVideo[0].title,
         img: editableVideo[0].img,
         verified: editableVideo[0].verified,
@@ -70,7 +78,7 @@ function AddVideo({ addVideos, editableVideo }) {
         //to make this controlled form add value
         value={newVideo.verified}
       />
-      <button>Add Video</button>
+      <button>{editableVideo ? 'Edit Video' : 'Add Video'}</button>
     </form>
   );
 }

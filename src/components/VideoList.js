@@ -27,11 +27,11 @@ const VideoList = ({ allData, deleteVideo, editVideo }) => {
             children(used to get the nested component as a prop) inside Video
             component */}
             <PlayButton
-              //passing custom attributes value and custom function
-              onClickingButton_play={() => console.log('Play', Iterator.title)}
-              onClickingButton_pause={() => {
-                console.log('pause', Iterator.title);
-              }}
+            //passing custom attributes value and custom function
+            // onClickingButton_play={() => console.log('Play', Iterator.title)}
+            // onClickingButton_pause={() => {
+            //   console.log('pause', Iterator.title);
+            // }}
             >
               {Iterator.title}
             </PlayButton>
