@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './AddVideo.css';
+import { ThemeContext } from '../context/ThemeContext';
 function AddVideo({ dispatch, editableVideo }) {
   let initialState = {
     id: '',
@@ -54,6 +55,7 @@ function AddVideo({ dispatch, editableVideo }) {
     }
   }, [editableVideo]);
 
+  const theme = useContext(ThemeContext);
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -80,7 +82,17 @@ function AddVideo({ dispatch, editableVideo }) {
         //to make this controlled form add value
         value={newVideo.verified}
       />
-      <button>{editableVideo ? 'Edit Video' : 'Add Video'}</button>
+      <button
+        className={theme}
+        style={{
+          borderBlockColor: 'red',
+          borderBlockEndColor: 'blue',
+          marginTop: '2px',
+          marginBottom: '2px',
+        }}
+      >
+        {editableVideo ? 'Edit Video' : 'Add Video'}
+      </button>
     </form>
   );
 }

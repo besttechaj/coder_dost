@@ -4,6 +4,7 @@ import PlayButton from '../components/PlayButton';
 
 const VideoList = ({ allData, dispatch, editVideo }) => {
   console.log(allData);
+
   return (
     <>
       <div

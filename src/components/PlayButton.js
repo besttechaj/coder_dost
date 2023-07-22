@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './PlayButton.css';
+import { ThemeContext } from '../context/ThemeContext';
 
 //passing children as a prop so to get the nested component
 export default function PlayButton({
@@ -27,8 +28,19 @@ export default function PlayButton({
     // //converting the value to false
     setPlaying(!playing);
   }
+
+  const theme = useContext(ThemeContext);
   return (
-    <button onClick={handleClick}>
+    <button
+      className={theme}
+      onClick={handleClick}
+      style={{
+        borderBlockColor: 'red',
+        borderBlockEndColor: 'blue',
+        marginTop: '2px',
+        marginBottom: '2px',
+      }}
+    >
       {children} : {playing ? ' ⏸️ ' : ' ▶️ '}
     </button>
   );

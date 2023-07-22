@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Video.css';
+import { ThemeContext } from '../context/ThemeContext';
 //destructuring props
 const Videos = ({
   id,
@@ -11,15 +12,17 @@ const Videos = ({
   editVideo,
 }) => {
   console.log('render videos component');
+
+  const theme = useContext(ThemeContext);
   return (
-    <div className='container'>
+    <div className={`container ${theme}`}>
       <button
-        className='close'
+        className={`close ${theme}`}
         onClick={() => dispatch({ type: 'DELETE', payload: id })}
       >
         X
       </button>
-      <button className='edit' onClick={() => editVideo(id)}>
+      <button className={`edit ${theme}`} onClick={() => editVideo(id)}>
         edit
       </button>
       <div className='pic' style={{ width: '20%', marginBottom: '2px' }}>

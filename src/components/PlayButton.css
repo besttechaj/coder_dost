@@ -1,14 +1,21 @@
 button {
-  background-color: #333;
-  color: white;
   font-size: 0.7rem;
   border-radius: 1em;
   border: '2px solid yellow';
   padding: 0.5em;
   cursor: pointer;
 }
+/* 
+button button:hover {
+  background-color: black !important;
+  color: white;
+} */
 
-button:hover {
+button.lightMode {
+  background-color: white;
+  color: black;
+}
+button.darkMode {
   background-color: black;
   color: white;
 }

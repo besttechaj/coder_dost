@@ -2,3 +2,27 @@
   padding: 0px;
   margin: 0;
 }
+
+.App {
+  height: 100vh;
+}
+
+.button.lightMode {
+  background-color: #ccc;
+  color: black;
+}
+
+.button.darkMode {
+  background-color: black;
+  color: white;
+}
+
+.darkMode {
+  background-color: black;
+  color: white;
+}
+
+.lightMode {
+  background-color: #ccc;
+  color: black;
+}

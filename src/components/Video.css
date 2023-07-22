@@ -5,19 +5,51 @@
   height: 185px;
   display: flex;
   flex-direction: column;
-  background-color: chartreuse;
-  color: white;
   position: relative;
+}
+
+.container.darkMode {
+  background-color: white;
+  color: black;
+}
+
+.container.lightMode {
+  background-color: white;
+  color: black;
 }
 
 .close {
   position: absolute;
   right: 0;
+  margin-right: 2px;
   top: 0;
   font-size: 0.7rem;
   border-radius: 80px;
   text-align: center;
+  border-block-color: red;
+  border-block-end-color: blue;
+  margin-top: 2px;
 }
+
+.close.darkMode {
+  background-color: black;
+  color: white;
+}
+
+.close.lightMode {
+  background-color: white;
+  color: black;
+}
+.edit.darkMode {
+  background-color: black;
+  color: white;
+}
+
+.edit.lightMode {
+  background-color: white;
+  color: black;
+}
+
 .edit {
   position: absolute;
   right: 4em;
@@ -25,4 +57,7 @@
   font-size: 0.7rem;
   border-radius: 80px;
   text-align: center;
+  border-block-color: red;
+  border-block-end-color: blue;
+  margin-top: 2px;
 }
