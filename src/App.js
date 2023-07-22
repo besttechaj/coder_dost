@@ -1,5 +1,5 @@
 import './App.css';
-import { useContext, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import videoDB from './data/data';
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
