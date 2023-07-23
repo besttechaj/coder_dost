@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
 import Videos from '../components/Videos';
 import PlayButton from '../components/PlayButton';
-import VideosDataContext from '../context/VideosDataContext';
+import useDataHook from '../customHooks/VideoDataHook';
 
 const VideoList = ({ editVideo }) => {
-  const data = useContext(VideosDataContext);
+  const data = useDataHook();
 
   return (
     <>

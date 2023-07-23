@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import './Video.css';
 import { ThemeContext } from '../context/ThemeContext';
-import VideoDispatchContext from '../context/VideoDispatchContext';
+import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 //destructuring props
 const Videos = ({ id, title, img, verified, children, editVideo }) => {
   console.log('render videos component');
 
   const theme = useContext(ThemeContext);
-  const dispatch = useContext(VideoDispatchContext);
+  const dispatch = useVideoDataDispatch();
   return (
     <div className={`container ${theme}`}>
       <button
