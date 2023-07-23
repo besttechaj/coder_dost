@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Videos from '../components/Videos';
 import PlayButton from '../components/PlayButton';
+import VideosDataContext from '../context/VideosDataContext';
 
-const VideoList = ({ allData, dispatch, editVideo }) => {
-  console.log(allData);
+const VideoList = ({ editVideo }) => {
+  const data = useContext(VideosDataContext);
 
   return (
     <>
@@ -15,13 +16,12 @@ const VideoList = ({ allData, dispatch, editVideo }) => {
           flexWrap: 'wrap',
         }}
       >
-        {allData.map((Iterator) => (
+        {data.map((Iterator) => (
           //passing props to each iterator element
           <Videos
             {...Iterator}
             key={Iterator.id}
             id={Iterator.id}
-            dispatch={dispatch}
             editVideo={editVideo}
           >
             {/* declaring nested component and passing it through prop called

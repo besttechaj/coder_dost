@@ -4,6 +4,8 @@ import videoDB from './data/data';
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
 import { ThemeContext } from './context/ThemeContext';
+import VideosDataContext from './context/VideosDataContext';
+import VideoDispatchContext from './context/VideoDispatchContext';
 // import Counter from './components/Counter';
 
 function App() {
@@ -80,31 +82,35 @@ function App() {
   return (
     //adding onClick event in parent component
     <ThemeContext.Provider value={mode}>
-      <div
-        className={`App ${mode}`}
-        // onClick={() => console.log('Running App component due to event bubbling')}
-      >
-        <button
-          className={mode}
-          style={{
-            marginBottom: '5px',
-            marginTop: '5px',
-            borderBlockColor: 'red',
-            borderBlockEndColor: 'blue',
-          }}
-          onClick={() =>
-            setMode(mode === 'lightMode' ? 'darkMode' : 'lightMode')
-          }
-        >
-          Switch Mode
-        </button>
-        {/* <button>Switch Mode</button> */}
-        <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
-        {/* passing the state */}
-        <VideoList allData={data} dispatch={dispatch} editVideo={editVideo} />
-        {/* logic to understand counter  */}
-        {/* <Counter></Counter> */}
-      </div>
+      <VideosDataContext.Provider value={data}>
+        <VideoDispatchContext.Provider value={dispatch}>
+          <div
+            className={`App ${mode}`}
+            // onClick={() => console.log('Running App component due to event bubbling')}
+          >
+            <button
+              className={mode}
+              style={{
+                marginBottom: '5px',
+                marginTop: '5px',
+                borderBlockColor: 'red',
+                borderBlockEndColor: 'blue',
+              }}
+              onClick={() =>
+                setMode(mode === 'lightMode' ? 'darkMode' : 'lightMode')
+              }
+            >
+              Switch Mode
+            </button>
+            {/* <button>Switch Mode</button> */}
+            <AddVideo editableVideo={editableVideo}></AddVideo>
+            {/* passing the state */}
+            <VideoList editVideo={editVideo} />
+            {/* logic to understand counter  */}
+            {/* <Counter></Counter> */}
+          </div>
+        </VideoDispatchContext.Provider>
+      </VideosDataContext.Provider>
     </ThemeContext.Provider>
   );
 }

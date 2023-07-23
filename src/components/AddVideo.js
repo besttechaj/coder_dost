@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import './AddVideo.css';
 import { ThemeContext } from '../context/ThemeContext';
-function AddVideo({ dispatch, editableVideo }) {
+import VideoDispatchContext from '../context/VideoDispatchContext';
+function AddVideo({ editableVideo }) {
   let initialState = {
     id: '',
     title: '',
@@ -56,6 +57,8 @@ function AddVideo({ dispatch, editableVideo }) {
   }, [editableVideo]);
 
   const theme = useContext(ThemeContext);
+
+  const dispatch = useContext(VideoDispatchContext);
   return (
     <form onSubmit={handleSubmit}>
       <input
