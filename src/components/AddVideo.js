@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import './AddVideo.css';
 import { ThemeContext } from '../context/ThemeContext';
 import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
@@ -54,6 +54,9 @@ function AddVideo({ editableVideo }) {
         verified: editableVideo[0].verified,
       });
     }
+    //focusing the input by giving reference to an input
+    // inputRef is the name , whereas current contains the element present inside that name and focus is a useRef method
+    inputRef.current.focus();
   }, [editableVideo]);
 
   const theme = useContext(ThemeContext);
@@ -61,9 +64,12 @@ function AddVideo({ editableVideo }) {
   //calling dispatch
   const dispatch = useVideoDataDispatch();
 
+  //creating a ref for input
+  const inputRef = useRef(null);
   return (
     <form onSubmit={handleSubmit}>
       <input
+        ref={inputRef}
         type='text'
         placeholder='title'
         onChange={handleChange}
