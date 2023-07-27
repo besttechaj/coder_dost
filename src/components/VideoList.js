@@ -2,16 +2,24 @@ import Videos from '../components/Videos';
 import PlayButton from '../components/PlayButton';
 import useDataHook from '../customHooks/VideoDataHook';
 import axios from 'axios';
+import { useEffect } from 'react';
+import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 const VideoList = ({ editVideo }) => {
   //To generate fake json data/api use mockaroo.com
   //api data fetch using axios from backend..
-  const url = 'https://api.mockaroo.com/api/aa3cef10?count=15&key=c155e640';
+  const url = 'https://api.mockaroo.com/api/aa3cef10?count=7&key=c155e640';
 
-  const handleClick = async () => {
-    console.log('running load more videos..');
-    const response = await axios.get(url);
-    console.log(response);
-  };
+  const dispatch = useVideoDataDispatch();
+
+  useEffect(() => {
+    const getVideosFromApi = async () => {
+      console.log('running load more videos..');
+      const response = await axios.get(url);
+      // console.log(response.data);
+      dispatch({ type: 'LOAD', payload: response.data });
+    };
+    getVideosFromApi();
+  }, []);
 
   const data = useDataHook();
 
@@ -48,7 +56,7 @@ const VideoList = ({ editVideo }) => {
           </Videos>
         ))}
       </div>
-      <button onClick={handleClick}>Load more videos</button>
+      {/* <button onClick={getVideosFromApi}>Load more videos</button> */}
     </>
   );
 };

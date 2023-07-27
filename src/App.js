@@ -1,6 +1,6 @@
 import './App.css';
 import { useReducer, useState } from 'react';
-import videoDB from './data/data';
+// import videoDB from './data/data';
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
 import { ThemeContext } from './context/ThemeContext';
@@ -19,6 +19,9 @@ function App() {
   //action - dispatch(action)
   function dataReducer(data, action) {
     switch (action.type) {
+      //to add multiple data through API
+      case 'LOAD':
+        return action.payload;
       //to add a video
       case 'ADD':
         return [
@@ -61,7 +64,7 @@ function App() {
   //  data - state
   //  dispatch - setState : dispatch indirectly update the state whereas as useState directly updates the states
   //dispatch -> this will triggered the action
-  const [data, dispatch] = useReducer(dataReducer, videoDB);
+  const [data, dispatch] = useReducer(dataReducer, []);
 
   //logic to edit video
   function editVideo(id) {

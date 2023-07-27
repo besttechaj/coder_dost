@@ -4,7 +4,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 //destructuring props
 const Videos = ({ id, title, img, verified, children, editVideo }) => {
-  console.log('render videos component');
+  console.log('render videos component having id', id);
 
   // testing purpose : render first time -> Mounting
   // useEffect(() => {
