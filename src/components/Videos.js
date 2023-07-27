@@ -6,6 +6,19 @@ import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 const Videos = ({ id, title, img, verified, children, editVideo }) => {
   console.log('render videos component');
 
+  // testing purpose : render first time -> Mounting
+  // useEffect(() => {
+  //   // performing clean Up : Since cleanUp requires id hence passing the operation inside a new id
+  //   const idx = setInterval(() => {
+  //     console.log('playing video number', id);
+  //   }, 3000);
+
+  //   //return
+  //   return () => {
+  //     clearInterval(idx);
+  //   };
+  // }, [id]);
+
   const theme = useContext(ThemeContext);
   const dispatch = useVideoDataDispatch();
   return (
