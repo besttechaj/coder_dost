@@ -2,7 +2,7 @@ import Videos from '../components/Videos';
 import PlayButton from '../components/PlayButton';
 import useDataHook from '../customHooks/VideoDataHook';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 const VideoList = ({ editVideo }) => {
   //To generate fake json data/api use mockaroo.com
@@ -21,7 +21,7 @@ const VideoList = ({ editVideo }) => {
 
   useEffect(() => {
     const getVideosFromApi = async () => {
-      console.log('running load more videos..');
+      console.log('fetching and running videos from Api..');
       const response = await axios.get(url);
       // console.log(response.data);
       dispatch({ type: 'LOAD', payload: response.data });
@@ -31,6 +31,30 @@ const VideoList = ({ editVideo }) => {
 
   const data = useDataHook();
 
+  //NOTE: IF you are memorizing any component using memo hook then it is compulsory to memorize its props,value and function
+  const play = useCallback(() => console.log('Play...'), []);
+  const pause = useCallback(() => {
+    console.log('pause...');
+  }, []);
+
+  //creating a useMemo for play button
+  const memoButton = useMemo(
+    () => (
+      <>
+        {/* declaring nested component and passing it through prop called children(used to get the nested component as a prop) inside Videocomponent */}
+        , (
+        <PlayButton
+          //passing custom attributes value and custom function
+          onClickingButton_play={play}
+          onClickingButton_pause={pause}
+        >
+          {/* {Iterator.title} */}Play
+        </PlayButton>
+        )
+      </>
+    ),
+    [pause, play]
+  );
   return (
     <>
       <div
@@ -49,18 +73,7 @@ const VideoList = ({ editVideo }) => {
             id={Iterator.id}
             editVideo={editVideo}
           >
-            {/* declaring nested component and passing it through prop called
-            children(used to get the nested component as a prop) inside Video
-            component */}
-            <PlayButton
-            //passing custom attributes value and custom function
-            // onClickingButton_play={() => console.log('Play', Iterator.title)}
-            // onClickingButton_pause={() => {
-            //   console.log('pause', Iterator.title);
-            // }}
-            >
-              {Iterator.title}
-            </PlayButton>
+            {memoButton}
           </Videos>
         ))}
       </div>

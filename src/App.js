@@ -1,12 +1,12 @@
 import './App.css';
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useCallback } from 'react';
 // import videoDB from './data/data';
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
 import { ThemeContext } from './context/ThemeContext';
 import VideosDataContext from './context/VideosDataContext';
 import VideoDispatchContext from './context/VideoDispatchContext';
-import Counter from './components/Counter';
+// import Counter from './components/Counter';
 function App() {
   //updating the state of edit video
   const [editableVideo, setEditableVideo] = useState(null);
@@ -67,16 +67,19 @@ function App() {
   const [data, dispatch] = useReducer(dataReducer, []);
 
   //logic to edit video
-  function editVideo(id) {
-    console.log('editing the video whose id is ', id);
-    // fetching the selected video from the list using video's id ..
-    // here we are creating a new object using useState hook since our initial value of editableVideo is null
-    setEditableVideo(data.filter((Element) => Element.id === id));
-    //it will display the previous state because this function gets re-rendered after complete execution and here we printing the result before function get re-rendered
-    // console.log(editableVideo);
-    //other way:   METHOD -2
-    //setEditableVideo(data.find(Element)=>Element.id===id)
-  }
+  const editVideo = useCallback(
+    function editVideo(id) {
+      console.log('editing the video whose id is ', id);
+      // fetching the selected video from the list using video's id ..
+      // here we are creating a new object using useState hook since our initial value of editableVideo is null
+      setEditableVideo(data.filter((Element) => Element.id === id));
+      //it will display the previous state because this function gets re-rendered after complete execution and here we printing the result before function get re-rendered
+      // console.log(editableVideo);
+      //other way:   METHOD -2
+      //setEditableVideo(data.find(Element)=>Element.id===id)
+    },
+    [data]
+  );
 
   const [mode, setMode] = useState('lightMode');
 

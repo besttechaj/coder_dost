@@ -1,9 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, memo } from 'react';
 import './PlayButton.css';
 import { ThemeContext } from '../context/ThemeContext';
 
-//passing children as a prop so to get the nested component
-export default function PlayButton({
+// HERE WE ARE WRAPPING THE COMPONENT INSIDE memo because to stop un-wanted re-rendering of component because during re-rendering of the components the render will not renders component hence saving loading time, memory, execution delay and overloading on processor for big calculation. If there is any change in props of this component in future it will re-render memo and stores the resultant component AGAIN.
+//NOTE: IF you are memorizing any component then it is compulsory to memorize its props,value and function
+
+// since function PlayButton becomes localVariable while wrapping in memo hook hence store it inside another variable with the same name to export it else this will give PlayButton is not defined error
+
+const PlayButton = memo(function PlayButton({
+  //passing children as a prop so to get the nested component
   children,
   onClickingButton_play,
   onClickingButton_pause,
@@ -44,4 +49,6 @@ export default function PlayButton({
       {children} : {playing ? ' ⏸️ ' : ' ▶️ '}
     </button>
   );
-}
+});
+
+export default PlayButton;

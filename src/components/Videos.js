@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import './Video.css';
 import { ThemeContext } from '../context/ThemeContext';
 import useVideoDataDispatch from '../customHooks/VideoDispatchHook';
 //destructuring props
-const Videos = ({ id, title, img, verified, children, editVideo }) => {
+const Videos = memo(({ id, title, img, verified, children, editVideo }) => {
   console.log('render videos component having id', id);
 
   // testing purpose : render first time -> Mounting
@@ -46,6 +46,6 @@ const Videos = ({ id, title, img, verified, children, editVideo }) => {
       <div>{children}</div>
     </div>
   );
-};
+});
 
 export default Videos;

@@ -50,7 +50,7 @@ const Counter = () => {
   //TIP: you can also use useMemo to store the function but it make more nested function hence we are using callback hook
 
   // useCallback hook : stores the function inside it hence   hence next time while re-rendering the component the fibonacci functionwill not perform calculation and it will also not load the processor or any kind of delay.
-  const functionMemorised = useCallback(
+  const functionMemorize = useCallback(
     //EXPLANATION FOR : useMemo hook
     // fibonacci series is a good example to understand useMemo hook since involves more time to calculate the result which overloads your processor performance. because bigger the number bigger will be the calculation and processor overloading.
     // function to calculate fibonacci series ...useMemo hook -> useMemo hook is used to store the function calculation/result or any big problem result  hence next time during re-rendering the component will not calculate the result again since the result is already stored inside useMemo , this will save the time for calculation also not load the processor for running and calculating the same function result ... so next time during component re-rendering the code will not re-render(ie perform calculation which takes time and memory and delay the execution time) the function fibonacci (because without useMemo hook if you are performing some big calculation for your result , if you re-render the component for any other use then due to that re-rendering also happens in this due to which it will again calculate the result and takes time and memory, delay the execution then displaying the result  ) again  because it has already stored the result in useMemo HOOK of fibonacci function result.
@@ -67,13 +67,13 @@ const Counter = () => {
   );
 
   //defining useMemo(function,[dependency array])
-  const fibMemorisedValue = useMemo(
-    () => functionMemorised(number),
+  const fibMemorizedValue = useMemo(
+    () => functionMemorize(number),
     //dependency: since while memorizing the function's result value we also need to memorize the function as well hence we are  storing the function inside another memorize value using callBack hook ... dependency tells us if there is any change in function or any parameters it will re-render the useMemo function.
-    [number, functionMemorised]
+    [number, functionMemorize]
   );
   console.log(
-    `Fibonacci input is ${number} and result is ${fibMemorisedValue}`
+    `Fibonacci input is ${number} and result is ${fibMemorizedValue}`
   );
   return (
     <>
@@ -82,7 +82,7 @@ const Counter = () => {
         hence next time while re-rendering the component the fibonacci function
         will not perform calculation and it will also not load the processor or
         any kind of delay.
-        {number} || fibonacci of given number is {fibMemorisedValue}
+        {number} || fibonacci of given number is {fibMemorizedValue}
       </h2>
       <button onClick={handleClick}>Add</button>
     </>
