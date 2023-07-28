@@ -11,6 +11,14 @@ const VideoList = ({ editVideo }) => {
 
   const dispatch = useVideoDataDispatch();
 
+  //calling this function through useEffect instead of onClick button
+  // const getVideosFromApi = async () => {
+  //   console.log('running load more videos..');
+  //   const response = await axios.get(url);
+  //   // console.log(response.data);
+  //   dispatch({ type: 'LOAD', payload: response.data });
+  // };
+
   useEffect(() => {
     const getVideosFromApi = async () => {
       console.log('running load more videos..');

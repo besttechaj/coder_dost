@@ -6,7 +6,7 @@ import VideoList from './components/VideoList';
 import { ThemeContext } from './context/ThemeContext';
 import VideosDataContext from './context/VideosDataContext';
 import VideoDispatchContext from './context/VideoDispatchContext';
-// import Counter from './components/Counter';
+import Counter from './components/Counter';
 function App() {
   //updating the state of edit video
   const [editableVideo, setEditableVideo] = useState(null);
