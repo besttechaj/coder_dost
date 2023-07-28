@@ -43,8 +43,11 @@ const Counter = () => {
     console.log('no. of times this counter handle function clicked is ', num);
   }
 
-  //TIP: useMemo hook is used to memorize the function's calculation result whereas useCallback hook is used to memorize the function to perform that operation. Due to use memo and use callback hook during re-rendering of the component the render will not render the function and its value hence saving loading time, memory, execution delay and overloading on processor for big calculation. If there is any change in input function or input passed value then we have added dependency array inside hook which will re-render callback and useMemo and stores the result AGAIN.
-  // you can also use useMemo to store the function but it make more nested function hence we are using callback hook
+  // problem and solution : to stop unwanted re-rendering of component and their function or value we use hooks like useMemo(to store function's result), useCallback(to store function), memo(to store component).
+
+  //TIP: useMemo hook is used to memorize the function's calculation result whereas useCallback hook is used to memorize the function to perform that operation. Due to use memo and use callback hook during re-rendering of the components the render will not renders the function and its value hence saving loading time, memory, execution delay and overloading on processor for big calculation. If there is any change in input function or input passed value then we have added dependency array inside hook which will re-render callback and useMemo and stores the result AGAIN.
+  //TIP: to stop unwanted re-rendering of component itself  go with memo hook .
+  //TIP: you can also use useMemo to store the function but it make more nested function hence we are using callback hook
 
   // useCallback hook : stores the function inside it hence   hence next time while re-rendering the component the fibonacci functionwill not perform calculation and it will also not load the processor or any kind of delay.
   const functionMemorised = useCallback(
