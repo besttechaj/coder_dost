@@ -1,5 +1,5 @@
 import './App.css';
-import { useReducer, useState, useCallback } from 'react';
+import { useReducer, useState, useCallback, useRef } from 'react';
 // import videoDB from './data/data';
 import AddVideo from './components/AddVideo';
 import VideoList from './components/VideoList';
@@ -81,7 +81,10 @@ function App() {
     [data]
   );
 
+  //setting mode logic
   const [mode, setMode] = useState('lightMode');
+
+  const inputRef = useRef(null);
 
   console.log('render App component');
   return (
@@ -107,8 +110,16 @@ function App() {
             >
               Switch Mode
             </button>
-            {/* <button>Switch Mode</button> */}
-            <AddVideo editableVideo={editableVideo}></AddVideo>
+
+            <button
+              onClick={() =>
+                //calling the custom function which is created inside useImperativeHandle hook
+                inputRef.current.jumpTo()
+              }
+            >
+              Focus
+            </button>
+            <AddVideo editableVideo={editableVideo} ref={inputRef}></AddVideo>
             {/* passing the state */}
             <VideoList editVideo={editVideo} />
             {/* logic to understand counter  */}

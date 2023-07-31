@@ -24,7 +24,8 @@ const VideoList = ({ editVideo }) => {
       console.log('fetching and running videos from Api..');
       const response = await axios.get(url);
       // console.log(response.data);
-      dispatch({ type: 'LOAD', payload: response.data });
+      //TODO :  un-comment below line to send data to UI
+      // dispatch({ type: 'LOAD', payload: response.data });
     };
     getVideosFromApi();
   }, []);
