@@ -37,6 +37,7 @@ const AddVideo = forwardRef(function AddVideo(
   };
   const [newVideo, setNewVideo] = useState(initialState);
 
+  //handle submit function
   function handleChange(e) {
     // console.log(e.target.name, e.target.value);
     setNewVideo({
@@ -46,6 +47,7 @@ const AddVideo = forwardRef(function AddVideo(
     });
   }
 
+  //handle submit function
   function handleSubmit(e) {
     //page reloading is a default behavior of form hence we need to use preventDefault method with syntheticBaseEvent ie e.preventDefault()
     e.preventDefault();
